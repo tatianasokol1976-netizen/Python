@@ -9,7 +9,8 @@ def test_calculator():
 
     try:
         driver.get(
-            "https://bonigarcia.dev/selenium-webdriver-java/slow-calculator.html"
+            "https://bonigarcia.dev/selenium-webdriver-java/"
+            "slow-calculator.html"
         )
 
         delay_input = WebDriverWait(driver, 10).until(

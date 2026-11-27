@@ -11,11 +11,17 @@ def test_shop():
     try:
         driver.get("https://www.saucedemo.com/")
         wait.until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, ".login_wrapper"))
+            EC.visibility_of_element_located(
+                (By.CSS_SELECTOR, ".login_wrapper")
+            )
         )
 
-        driver.find_element(By.CSS_SELECTOR, "#user-name").send_keys("standard_user")
-        driver.find_element(By.CSS_SELECTOR, "#password").send_keys("secret_sauce")
+        driver.find_element(By.CSS_SELECTOR, "#user-name").send_keys(
+            "standard_user"
+        )
+        driver.find_element(By.CSS_SELECTOR, "#password").send_keys(
+            "secret_sauce"
+        )
         driver.find_element(By.CSS_SELECTOR, "#login-button").click()
 
         items = [
@@ -26,7 +32,8 @@ def test_shop():
         for item in items:
             btn_locator = (
                 By.XPATH,
-                f"//div[@class='inventory_item_description'] [.//div[text()='{item}']]//button",
+                "//div[@class='inventory_item_description']"
+                + f"[.//div[text()='{item}']]//button",
             )
             wait.until(EC.element_to_be_clickable(btn_locator)).click()
 
@@ -37,7 +44,9 @@ def test_shop():
         driver.find_element(*checkout_btn).click()
 
         wait.until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, ".checkout_info"))
+            EC.visibility_of_element_located(
+                (By.CSS_SELECTOR, ".checkout_info")
+            )
         )
         fields = {
             "first-name": "Maria",
@@ -52,7 +61,9 @@ def test_shop():
         driver.find_element(By.CSS_SELECTOR, "#continue").click()
 
         total_element = wait.until(
-            EC.visibility_of_element_located((By.CSS_SELECTOR, ".summary_total_label"))
+            EC.visibility_of_element_located(
+                (By.CSS_SELECTOR, ".summary_total_label")
+            )
         )
         total_text = total_element.text
 

@@ -9,7 +9,9 @@ def test_data_types_form():
     wait = WebDriverWait(driver, 10)
 
     try:
-        driver.get("https://bonigarcia.dev/selenium-webdriver-java/data-types.html")
+        driver.get(
+            "https://bonigarcia.dev/selenium-webdriver-java/data-types.html"
+            )
         wait.until(
             EC.visibility_of_element_located(
                 (By.CSS_SELECTOR, "input[name='first-name']")
@@ -24,11 +26,13 @@ def test_data_types_form():
             "city": "Москва",
             "country": "Россия",
             "job-position": "QA",
-            "company": "SryPro",
+            "company": "SkyPro",
         }
 
         for field_name, value in fields.items():
-            faeld = driver.find_element(By.CSS_SELECTOR, f"input[name='{field_name}']")
+            faeld = driver.find_element(
+                By.CSS_SELECTOR, f"input[name='{field_name}']"
+            )
             faeld.clear()
             faeld.send_keys(value)
 
@@ -39,14 +43,16 @@ def test_data_types_form():
             EC.visibility_of_element_located((By.CSS_SELECTOR, "#zip-code"))
         )
         assert "alert-danger" in zip_code_element.get_attribute("class"), (
-            "Поле zip-code не подсвечено красным, отсутствует класс alert-danger"
+            "Поле zip-code не подсвечено красным"
         )
 
         for field_name in fields:
-            field_element = driver.find_element(By.CSS_SELECTOR, f"#{field_name}")
-        assert "alert-success" in field_element.get_attribute("class"), (
-            f"Поле {field_name} не подсвечено зеленым, отсутствует класс alter-success"
-        )
+            field_element = driver.find_element(
+                By.CSS_SELECTOR, f"#{field_name}"
+            )
+            assert "alert-success" in field_element.get_attribute("class"), (
+                f"Поле {field_name} не подсвечено зеленым"
+            )
 
     finally:
         driver.quit()
