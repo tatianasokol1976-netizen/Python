@@ -30,11 +30,11 @@ def test_data_types_form():
         }
 
         for field_name, value in fields.items():
-            faeld = driver.find_element(
+            field = driver.find_element(
                 By.CSS_SELECTOR, f"input[name='{field_name}']"
             )
-            faeld.clear()
-            faeld.send_keys(value)
+            field.clear()
+            field.send_keys(value)
 
         submit_btn = driver.find_element(By.CLASS_NAME, "mt-3")
         submit_btn.click()
